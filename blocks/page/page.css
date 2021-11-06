@@ -1,0 +1,13 @@
+.page {
+    max-width: 1280px;
+    background-color: black;
+    color: #fff;
+    padding: 0;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+@media screen and (max-width: 767px) {
+    .page {
+      max-width: 100%;
+    }
+  }
