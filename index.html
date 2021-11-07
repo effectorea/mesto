@@ -1,77 +1,115 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
-    <link rel="stylesheet" href="./pages/index.css">
-</head>
-<body class="page">
+    <link rel="stylesheet" href="./pages/index.css" />
+  </head>
+  <body class="page">
     <header class="header">
-        <img src="./images/logo.svg" alt="Логотип Место" class="header__logo">
+      <img src="./images/logo.svg" alt="Логотип Место" class="header__logo" />
     </header>
     <main class="content">
-        <section class="profile">
-            <img src="./images/kusto_image.jpg" alt="Жак-Ив Кусто" class="profile__avatar">
-            <div class="profile__info">
-                <div class="profile__info-twin">
-                    <h1 class="profile__title">Жак-Ив Кусто</h1>
-                    <button class="profile__edit-button"></button>
-                </div>
-                <h2 class="profile__subtitle">Исследователь океана</h2>
-            </div>
-            <button class="profile__add-button"></button>
-        </section>
-        <section class="elements">
-            <article class="element">
-                <img src="./images/castle.jpg" alt="Замок посреди озера" class="element__image">
-                <div class="element__info">
-                    <h2 class="element__title">Замок</h2>
-                    <button class="element__heart"></button>
-                </div>
-            </article>
-            <article class="element">
-                <img src="./images/china.jpg" alt="Улочка в Китае ночью" class="element__image">
-                <div class="element__info">
-                    <h2 class="element__title">Китай</h2>
-                    <button class="element__heart"></button>
-                </div>
-            </article>
-            <article class="element">
-                <img src="./images/church.jpg" alt="Черная церковь" class="element__image">
-                <div class="element__info">
-                    <h2 class="element__title">Церквушка</h2>
-                    <button class="element__heart"></button>
-                </div>
-            </article>
-            <article class="element">
-                <img src="./images/field.jpg" alt="Зеленое поле" class="element__image">
-                <div class="element__info">
-                    <h2 class="element__title">Поле</h2>
-                    <button class="element__heart"></button>
-                </div>
-            </article>
-            <article class="element">
-                <img src="./images/mountainhouse.jpg" alt="Домик в горах" class="element__image">
-                <div class="element__info">
-                    <h2 class="element__title">Домик в горах</h2>
-                    <button class="element__heart"></button>
-                </div>
-            </article>
-            <article class="element">
-                <img src="./images/philip-jahn-hacFJtpL-L4-unsplash.jpg" alt="Замок в лесах" class="element__image">
-                <div class="element__info">
-                    <h2 class="element__title">Очередной замок в лесах</h2>
-                    <button class="element__heart"></button>
-                </div>
-            </article>
-        </section>
-
+      <section class="profile">
+        <img
+          src="./images/kusto_image.jpg"
+          alt="Жак-Ив Кусто"
+          class="profile__avatar"
+        />
+        <div class="profile__info">
+          <div class="profile__info-twin">
+            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <button class="profile__edit-button"></button>
+          </div>
+          <h2 class="profile__subtitle">Исследователь океана</h2>
+        </div>
+        <button class="profile__add-button"></button>
+      </section>
+      <section class="elements">
+        <article class="element">
+          <img
+            src="./images/castle.jpg"
+            alt="Замок посреди озера"
+            class="element__image"
+          />
+          <div class="element__info">
+            <h2 class="element__title">Замок</h2>
+            <button class="element__heart"></button>
+          </div>
+        </article>
+        <article class="element">
+          <img
+            src="./images/china.jpg"
+            alt="Улочка в Китае ночью"
+            class="element__image"
+          />
+          <div class="element__info">
+            <h2 class="element__title">Китай</h2>
+            <button class="element__heart"></button>
+          </div>
+        </article>
+        <article class="element">
+          <img
+            src="./images/church.jpg"
+            alt="Черная церковь"
+            class="element__image"
+          />
+          <div class="element__info">
+            <h2 class="element__title">Церквушка</h2>
+            <button class="element__heart"></button>
+          </div>
+        </article>
+        <article class="element">
+          <img
+            src="./images/field.jpg"
+            alt="Зеленое поле"
+            class="element__image"
+          />
+          <div class="element__info">
+            <h2 class="element__title">Поле</h2>
+            <button class="element__heart"></button>
+          </div>
+        </article>
+        <article class="element">
+          <img
+            src="./images/mountainhouse.jpg"
+            alt="Домик в горах"
+            class="element__image"
+          />
+          <div class="element__info">
+            <h2 class="element__title">Домик в горах</h2>
+            <button class="element__heart"></button>
+          </div>
+        </article>
+        <article class="element">
+          <img
+            src="./images/philip-jahn-hacFJtpL-L4-unsplash.jpg"
+            alt="Замок в лесах"
+            class="element__image"
+          />
+          <div class="element__info">
+            <h2 class="element__title">Очередной замок в лесах</h2>
+            <button class="element__heart"></button>
+          </div>
+        </article>
+      </section>
+      <section class="popup">
+          <div class="popup__container">
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <form action="#" class="popup__form">
+                <input required placeholder="Жак-Ив Кусто" name="heading" id="heading" type="text" class="popup__input-name">
+                <input required placeholder="Исследователь океана" name="mission" id="mission" type="text" class="popup__input-mission">
+                <button class="popup__save-btn">Сохранить</button>
+            </form>
+            <button class="popup__close"></button>        
+          </div>
+      </section>
     </main>
     <footer class="footer">
-        <p class="footer__copyright">© 2021 Mesto Russia</p>
-
+      <p class="footer__copyright">© 2021 Mesto Russia</p>
     </footer>
-</body>
+    <script src="./blocks/scripts/index.js"></script>
+  </body>
 </html>
