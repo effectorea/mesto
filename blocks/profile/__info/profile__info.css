@@ -15,16 +15,10 @@
 @media screen and (max-width: 734px) {
     .profile__info {
       max-width: 580px;
-      margin: 0 auto;
-      margin: 26px auto 36px;
-      padding: 0;
     }
 }
 @media screen and (max-width: 440px) {
     .profile__info {
       max-width: 282px;
-      margin: 0 auto;
-      margin: 26px auto 36px;
-      padding: 0;
     }
 }

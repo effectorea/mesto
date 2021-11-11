@@ -1,17 +1,18 @@
 .element__heart {
     border: none;
-    width: 22px;
-    height: 19px;
-    background-color: white;
-    background-image: url(../../../images/heart.svg);
+    width: 23px;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.4);
+    background-image: url(../../../images/Vector_Heart3.png);
     background-repeat: no-repeat;
     background-position: 50%;
+    background-size: cover;
     cursor: pointer;
-    opacity: 1;
     transition: .3s opacity;
     flex-grow: 0;
+    mix-blend-mode: multiply;
 }
 
 .element__heart:hover {
-    opacity: 0.6;
+    opacity: 0.5;
 }
