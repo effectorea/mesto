@@ -1,53 +1,31 @@
 "use strict"
 
-const popupElement = document.querySelector('.popup'); 
+const popupElement = document.querySelector('.popup');
+const popupCloseButtonElement = popupElement.querySelector('.popup__close');
+const profileEditButtonElement = document.querySelector('.profile__edit-button');
+let formElement = document.querySelector('.popup__form');
+let nameInput = document.querySelector('.popup_add_name');
+let missionInput = document.querySelector('.popup_add_mission');
+let profileTitle = document.querySelector('.profile__title');
+let profileSubtitle = document.querySelector('.profile__subtitle');
 
-const popupCloseButtonElement = popupElement.querySelector('.popup__close'); 
+const togglePopupVisibility = function () {
+    if (!popupElement.classList.contains('popup_opened')) {
+        popupElement.classList.add('popup_opened');
+        nameInput.value = profileTitle.textContent;
+        missionInput.value = profileSubtitle.textContent;
+    } else {
+        popupElement.classList.remove('popup_opened');
+    }
+};
 
-const profileEditButtonElement = document.querySelector('.profile__edit-button'); 
+profileEditButtonElement.addEventListener('click', togglePopupVisibility);
+popupCloseButtonElement.addEventListener('click', togglePopupVisibility);
 
-const submitButtonElement = document.querySelector('.popup__save-btn'); 
-
-const togglePopupVisibility = function() { 
-
-    popupElement.classList.toggle('popup_opened'); 
-
-    nameInput.value = profileTitle.textContent; 
-
-    missionInput.value = profileSubtitle.textContent; 
-
-}; 
-
- 
-
-profileEditButtonElement.addEventListener('click', togglePopupVisibility); 
-
-popupCloseButtonElement.addEventListener('click', togglePopupVisibility); 
-
- 
-
-let formElement = document.querySelector('.popup__form'); 
-
-let nameInput = document.querySelector('.popup__input_name'); 
-
-let missionInput = document.querySelector('.popup__input_mission'); 
-
-let profileTitle = document.querySelector('.profile__title'); 
-
-let profileSubtitle = document.querySelector('.profile__subtitle'); 
-
- 
-
-function formSubmitHandler (evt) { 
-
-    evt.preventDefault(); 
-
-    profileTitle.textContent = nameInput.value; 
-
-    profileSubtitle.textContent = missionInput.value; 
-
-    submitButtonElement.addEventListener('click', togglePopupVisibility); 
-
-} 
-
-formElement.addEventListener('submit', formSubmitHandler); 
+function formSubmitHandler(evt) {
+    evt.preventDefault();
+    profileTitle.textContent = nameInput.value;
+    profileSubtitle.textContent = missionInput.value;
+    togglePopupVisibility();
+}
+formElement.addEventListener('submit', formSubmitHandler);
