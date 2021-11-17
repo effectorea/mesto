@@ -3,11 +3,13 @@
 const popupElement = document.querySelector('.popup');
 const popupCloseButtonElement = popupElement.querySelector('.popup__close');
 const profileEditButtonElement = document.querySelector('.profile__edit-button');
+const likeButtonElements = document.querySelectorAll('.element__heart');
 let formElement = document.querySelector('.popup__form');
 let nameInput = document.querySelector('.popup__input_add_name');
 let missionInput = document.querySelector('.popup__input_add_mission');
 let profileTitle = document.querySelector('.profile__title');
 let profileSubtitle = document.querySelector('.profile__subtitle');
+
 
 const togglePopupVisibility = function () {
     if (!popupElement.classList.contains('popup_opened')) {
@@ -29,3 +31,9 @@ function formSubmitHandler(evt) {
     togglePopupVisibility();
 }
 formElement.addEventListener('submit', formSubmitHandler);
+
+for (let i = 0; i < likeButtonElements.length; i++) {
+    likeButtonElements[i].addEventListener('click', function () {
+        likeButtonElements[i].classList.toggle('element__heart_active');
+  });
+}
