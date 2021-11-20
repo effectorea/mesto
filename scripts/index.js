@@ -1,4 +1,32 @@
 "use strict"
+const initialCards = [
+    {
+      name: 'Архыз',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+      name: 'Челябинская область',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+      name: 'Иваново',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+      name: 'Камчатка',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+      name: 'Холмогорский район',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+      name: 'Байкал',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+  ];
+const itemTemplate = document.querySelector('.item_template');
+const elements = document.querySelector('.elements');
 
 const popupElement = document.querySelector('.popup');
 const popupCloseButtonElement = popupElement.querySelector('.popup__close');
@@ -9,6 +37,31 @@ let nameInput = document.querySelector('.popup__input_add_name');
 let missionInput = document.querySelector('.popup__input_add_mission');
 let profileTitle = document.querySelector('.profile__title');
 let profileSubtitle = document.querySelector('.profile__subtitle');
+
+function render() {
+    for (let i = 0; i < initialCards.length; i++) {
+        const element = initialCards[i];
+        renderItem(element);
+    }
+}
+render();
+
+function renderItem(initialCards) {
+    const htmlElement = itemTemplate.content.cloneNode(true);
+    const likeButtonElement = htmlElement.querySelector('.element__heart');
+    const trasherElement = htmlElement.querySelector('.element__trasher');
+    htmlElement.querySelector('.element__title').textContent = initialCards.name;
+    htmlElement.querySelector('.element__image').src = initialCards.link;
+    likeButtonElement.addEventListener('click', () => {
+        likeButtonElement.classList.toggle('element__heart_active');
+    });
+    trasherElement.addEventListener('click', () => {
+        trasherElement.parentElement.remove();
+    });
+    elements.appendChild(htmlElement);
+}
+renderItem(initialCards);
+
 
 
 const togglePopupVisibility = function () {
@@ -31,9 +84,3 @@ function formSubmitHandler(evt) {
     togglePopupVisibility();
 }
 formElement.addEventListener('submit', formSubmitHandler);
-
-for (let i = 0; i < likeButtonElements.length; i++) {
-    likeButtonElements[i].addEventListener('click', function () {
-        likeButtonElements[i].classList.toggle('element__heart_active');
-  });
-}

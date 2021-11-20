@@ -11,6 +11,7 @@
     <header class="header">
       <img src="./images/logo.svg" alt="Логотип Место" class="header__logo" />
     </header>
+
     <main class="content">
       <section class="profile">
         <img
@@ -27,84 +28,12 @@
         </div>
         <button type="button" class="profile__add-button"></button>
       </section>
-      <section class="elements">
-        <article class="element">
-          <button type="button" class="element__trasher"></button>
-          <img
-            src="./images/castle.jpg"
-            alt="Замок посреди озера"
-            class="element__image"
-          />          
-          <div class="element__info">
-            <h2 class="element__title">Замок</h2>
-            <button type="button" class="element__heart"></button>
-          </div>
-        </article>
-        <article class="element">
-          <button type="button" class="element__trasher"></button>
-          <img
-            src="./images/china.jpg"
-            alt="Улочка в Китае ночью"
-            class="element__image"
-          />
-          <div class="element__info">
-            <h2 class="element__title">Китай</h2>
-            <button type="button" class="element__heart"></button>
-          </div>
-        </article>
-        <article class="element">
-          <button type="button" class="element__trasher"></button>
-          <img
-            src="./images/church.jpg"
-            alt="Черная церковь"
-            class="element__image"
-          />
-          <div class="element__info">
-            <h2 class="element__title">Церквушка</h2>
-            <button type="button" class="element__heart"></button>
-          </div>
-        </article>
-        <article class="element">
-          <button type="button" class="element__trasher"></button>
-          <img
-            src="./images/field.jpg"
-            alt="Зеленое поле"
-            class="element__image"
-          />
-          <div class="element__info">
-            <h2 class="element__title">Поле</h2>
-            <button type="button" class="element__heart"></button>
-          </div>
-        </article>
-        <article class="element">
-          <button type="button" class="element__trasher"></button>
-          <img
-            src="./images/mountainhouse.jpg"
-            alt="Домик в горах"
-            class="element__image"
-          />
-          <div class="element__info">
-            <h2 class="element__title">Домик в горах</h2>
-            <button type="button" class="element__heart"></button>
-          </div>
-        </article>
-        <article class="element">
-          <button type="button" class="element__trasher"></button>
-          <img
-            src="./images/philip-jahn-hacFJtpL-L4-unsplash.jpg"
-            alt="Замок в лесах"
-            class="element__image"
-          />
-          <div class="element__info">
-            <h2 class="element__title">Очередной замок в лесах</h2>
-            <button type="button" class="element__heart"></button>
-          </div>
-        </article>
-      </section>
+      <section class="elements"></section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">© 2021 Mesto Russia</p>
     </footer>
+
     <div class="popup">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
@@ -130,6 +59,21 @@
         <button type="button" class="popup__close"></button>
       </div>
     </div>
+
+    <template class="item_template">
+      <article class="element">
+        <button type="button" class="element__trasher"></button>
+        <img
+          src="#"
+          alt="Фото"
+          class="element__image"
+        />          
+        <div class="element__info">
+          <h2 class="element__title"></h2>
+          <button type="button" class="element__heart"></button>
+        </div>
+    </template>
+
     <script src="./scripts/index.js"></script>
   </body>
 </html>
