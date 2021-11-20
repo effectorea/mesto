@@ -60,6 +60,32 @@
       </div>
     </div>
 
+    <div id="articleAddPopup" class="popup">
+      <div class="popup__container">
+        <h2 class="popup__title">Новое место</h2>
+        <form name="text" action="#" class="popup__form">
+          <input
+            required
+            placeholder="Название"
+            name="place"
+            id="place"
+            type="text"
+            class="popup__input"
+          />
+          <input
+            required
+            placeholder="Ссылка на картинку"
+            name="image"
+            id="image"
+            type="url"
+            class="popup__input"
+          />
+          <button type="submit" class="popup__save-btn">Создать</button>
+        </form>
+        <button type="button" class="popup__close"></button>
+      </div>
+    </div>
+
     <template class="item_template">
       <article class="element">
         <button type="button" class="element__trasher"></button>
