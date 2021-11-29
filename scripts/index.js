@@ -53,8 +53,8 @@ const imageBig = imageBigPopup.querySelector('.popup__image');
 const imageTitle = imageBigPopup.querySelector('.popup__place-name');
 
 const toggleAddPopupVisibility = function () {
-    if (!popupAddArticleElement.classList.contains('popup_opened')) {
-        popupAddArticleElement.classList.add('popup_opened');
+    if (!popupAddArticleElement.classList.contains('popup_opened', 'fade')) {
+        popupAddArticleElement.classList.add('popup_opened', 'fade');
     }
 }
 const closePopupContainer = function () {
@@ -78,8 +78,8 @@ formAddArticleElement.addEventListener('submit', (evt) => {
 
 
 const togglePopupVisibility = function() {
-    if (!popupElement.classList.contains('popup_opened')) {
-        popupElement.classList.add('popup_opened');
+    if (!popupElement.classList.contains('popup_opened', 'fade')) {
+        popupElement.classList.add('popup_opened', 'fade');
         nameInput.value = profileTitle.textContent;
         missionInput.value = profileSubtitle.textContent;
     } else {
@@ -101,7 +101,7 @@ formElement.addEventListener('submit', formSubmitHandler);
 const handleBigImageOpen = (cardImage, cardTitle) => {
     imageBig.src = cardImage.src;
     imageTitle.textContent = cardTitle.textContent;
-    imageBigPopup.classList.add('popup_opened');
+    imageBigPopup.classList.add('popup_opened', 'fade');
     imageBigClose.addEventListener('click', () => {
         imageBigPopup.classList.remove('popup_opened');
     });
