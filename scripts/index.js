@@ -132,7 +132,7 @@ function renderItem(item) {
     elementImage.addEventListener('click', () => {
         handleBigImageOpen(elementImage, elementTitle);
     });
-    elements.appendChild(htmlElement);
+    elements.prepend(htmlElement);
 }
 
 
