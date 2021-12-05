@@ -53,10 +53,8 @@ const imageBig = imageBigPopup.querySelector('.popup__image');
 const imageTitle = imageBigPopup.querySelector('.popup__place-name');
 
 // общие функции открытия/закрытия окна для всех попапов
-const openPopupContainer = function (popup) {
-    if (!popup.classList.contains('popup_opened', 'fade')) { 
-        popup.classList.add('popup_opened', 'fade'); 
-    }
+const openPopupContainer = function (popup) { 
+    popup.classList.add('popup_opened', 'fade'); 
 }
 const closePopupContainer = function (popup) {
     popup.classList.remove('popup_opened');
@@ -71,7 +69,7 @@ popupAddArticleClose.addEventListener('click', () => {
     closePopupContainer(popupAddArticleElement);
 });
 
-//присваивание значение со страницы
+//присваивание значения со страницы
 const insertValues = () => {
     nameInput.value = profileTitle.textContent;
     missionInput.value = profileSubtitle.textContent;
@@ -99,12 +97,15 @@ profileEditForm.addEventListener('submit', profileEditFormSubmit);
 //организация показа большого изображения 
 const handleBigImageOpen = (cardImage, cardTitle) => {
     imageBig.src = cardImage.src;
-    imageTitle.textContent = imageBig.alt = cardTitle.textContent;
+    imageTitle.textContent = cardTitle.textContent;
+    imageBig.alt = cardTitle.textContent;
     openPopupContainer(imageBigPopup);
-    imageBigClose.addEventListener('click', () => {
-        closePopupContainer(imageBigPopup);
-    });
 };
+
+//обработчик события на кнопку закрытия окна большого изображения
+imageBigClose.addEventListener('click', () => {
+    closePopupContainer(imageBigPopup);
+});
 
 //обработчик события на кнопку "создать новое место" 
 formAddArticleElement.addEventListener('submit', (evt) => {
@@ -130,7 +131,8 @@ function createCard(item) {
     const trasherElement = htmlElement.querySelector('.element__trasher');
     const elementTitle =  htmlElement.querySelector('.element__title');
     const elementImage = htmlElement.querySelector('.element__image');
-    elementTitle.innerText = elementImage.alt = item.name;
+    elementTitle.innerText = item.name;
+    elementImage.alt = item.name;
     elementImage.src = item.link;
     likeButtonElement.addEventListener('click', () => {
         likeButtonElement.classList.toggle('element__heart_active');
