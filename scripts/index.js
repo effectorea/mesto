@@ -54,7 +54,7 @@ const imageTitle = imageBigPopup.querySelector('.popup__place-name');
 
 // общие функции открытия/закрытия окна для всех попапов
 const openPopupContainer = function (popup) { 
-    popup.classList.add('popup_opened', 'fade'); 
+    popup.classList.add('popup_opened'); 
 }
 const closePopupContainer = function (popup) {
     popup.classList.remove('popup_opened');
