@@ -1,32 +1,33 @@
-"use strict"
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+'use strict'
+
+const initialCards = [{
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
     },
     {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
     },
     {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
     },
     {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
     },
     {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
     },
     {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
-  ];
+];
 const itemTemplate = document.querySelector('.item_template');
 const elements = document.querySelector('.elements');
+const popupElementsAll = document.querySelectorAll('.popup');
 
 const popupElement = document.querySelector('.popup');
 const popupCloseButtonElement = popupElement.querySelector('.popup__close');
@@ -53,8 +54,8 @@ const imageBig = imageBigPopup.querySelector('.popup__image');
 const imageTitle = imageBigPopup.querySelector('.popup__place-name');
 
 // общие функции открытия/закрытия окна для всех попапов
-const openPopupContainer = function (popup) { 
-    popup.classList.add('popup_opened'); 
+const openPopupContainer = function (popup) {
+    popup.classList.add('popup_opened');
 }
 const closePopupContainer = function (popup) {
     popup.classList.remove('popup_opened');
@@ -129,7 +130,7 @@ function createCard(item) {
     const htmlElement = itemTemplate.content.cloneNode(true);
     const likeButtonElement = htmlElement.querySelector('.element__heart');
     const trasherElement = htmlElement.querySelector('.element__trasher');
-    const elementTitle =  htmlElement.querySelector('.element__title');
+    const elementTitle = htmlElement.querySelector('.element__title');
     const elementImage = htmlElement.querySelector('.element__image');
     elementTitle.innerText = item.name;
     elementImage.alt = item.name;
@@ -149,9 +150,18 @@ function createCard(item) {
 function addCard(container, cardElement) {
     container.prepend(cardElement);
 }
+//обработчик события для закрытия любого попапа кликом на оверлей
+popupElementsAll.forEach((element) => element.addEventListener('click', (evt) => {
+    if (evt.target === element) {
+        closePopupContainer(element);
+    }
+}));
 
-
-
-
-
-
+//обработчик события для закрытия любого попапа клавишей Escape
+document.addEventListener('keydown', (evt) => {
+    if (evt.code === "Escape") {
+        popupElementsAll.forEach(element => {
+            closePopupContainer(element);
+        });
+    }
+});
