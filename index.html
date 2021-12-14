@@ -44,16 +44,22 @@
             name="heading"
             id="heading"
             type="text"
+            minlength="2"
+            maxlength="40"
             class="popup__input popup__input_add_name"
           />
+          <span class="popup__error popup__error_visible"></span>
           <input
             required
             placeholder="Профессиональная деятельность"
             name="mission"
             id="mission"
             type="text"
+            minlength="2"
+            maxlength="200"
             class="popup__input popup__input_add_mission"
           />
+          <span class="popup__error popup__error_visible"></span>
           <button type="submit" class="popup__save-btn">Сохранить</button>
         </form>
         <button type="button" class="popup__close"></button>
@@ -72,6 +78,7 @@
             type="text"
             class="popup__input"
           />
+          <span class="popup__error popup__error_visible"></span>
           <input
             required
             placeholder="Ссылка на картинку"
@@ -80,6 +87,7 @@
             type="url"
             class="popup__input"
           />
+          <span class="popup__error popup__error_visible"></span>
           <button type="submit" class="popup__save-btn">Создать</button>
         </form>
         <button type="button" class="popup__close"></button>
@@ -109,6 +117,7 @@
       </article>  
     </template>
 
+    <script src="./scripts/validation.js"></script>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
