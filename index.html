@@ -48,7 +48,7 @@
             maxlength="40"
             class="popup__input popup__input_add_name"
           />
-          <span id="heading-error" class="popup__error popup__error_visible"></span>
+          <span id="heading-error" class="popup__error"></span>
           <input
             required
             placeholder="Профессиональная деятельность"
@@ -59,7 +59,7 @@
             maxlength="200"
             class="popup__input popup__input_add_mission"
           />
-          <span id="mission-error" class="popup__error popup__error_visible"></span>
+          <span id="mission-error" class="popup__error"></span>
           <button type="submit" class="popup__save-btn">Сохранить</button>
         </form>
         <button type="button" class="popup__close"></button>
@@ -77,8 +77,10 @@
             id="place"
             type="text"
             class="popup__input"
+            minlength="2"
+            maxlength="30"
           />
-          <span id="place-error" class="popup__error popup__error_visible"></span>
+          <span id="place-error" class="popup__error"></span>
           <input
             required
             placeholder="Ссылка на картинку"
@@ -87,7 +89,7 @@
             type="url"
             class="popup__input"
           />
-          <span id="image-error" class="popup__error popup__error_visible"></span>
+          <span id="image-error" class="popup__error"></span>
           <button type="submit" class="popup__save-btn">Создать</button>
         </form>
         <button type="button" class="popup__close"></button>
