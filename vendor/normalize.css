@@ -1,4 +1,11 @@
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+input, textarea {outline:none;}
+input:active, textarea:active {outline:none;}
+:focus {outline:none;}
+textarea {resize:none;}
+textarea {resize:vertical;}
+textarea {resize:horizontal;}
+
 
 /* Document
    ========================================================================== */

@@ -37,7 +37,7 @@
     <div class="popup">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form name="text" action="#" class="popup__form">
+        <form name="text" action="#" class="popup__form" novalidate>
           <input
             required
             placeholder="Имя"
@@ -48,7 +48,7 @@
             maxlength="40"
             class="popup__input popup__input_add_name"
           />
-          <span class="popup__error popup__error_visible"></span>
+          <span id="heading-error" class="popup__error popup__error_visible"></span>
           <input
             required
             placeholder="Профессиональная деятельность"
@@ -59,7 +59,7 @@
             maxlength="200"
             class="popup__input popup__input_add_mission"
           />
-          <span class="popup__error popup__error_visible"></span>
+          <span id="mission-error" class="popup__error popup__error_visible"></span>
           <button type="submit" class="popup__save-btn">Сохранить</button>
         </form>
         <button type="button" class="popup__close"></button>
@@ -69,7 +69,7 @@
     <div id="articleAddPopup" class="popup">
       <div class="popup__container">
         <h2 class="popup__title">Новое место</h2>
-        <form name="text" action="#" class="popup__form">
+        <form name="text" action="#" class="popup__form" novalidate>
           <input
             required
             placeholder="Название"
@@ -78,7 +78,7 @@
             type="text"
             class="popup__input"
           />
-          <span class="popup__error popup__error_visible"></span>
+          <span id="place-error" class="popup__error popup__error_visible"></span>
           <input
             required
             placeholder="Ссылка на картинку"
@@ -87,7 +87,7 @@
             type="url"
             class="popup__input"
           />
-          <span class="popup__error popup__error_visible"></span>
+          <span id="image-error" class="popup__error popup__error_visible"></span>
           <button type="submit" class="popup__save-btn">Создать</button>
         </form>
         <button type="button" class="popup__close"></button>
