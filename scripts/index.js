@@ -46,6 +46,7 @@ const popupAddArticleClose = popupAddArticleElement.querySelector('.popup__close
 const formAddArticleElement = popupAddArticleElement.querySelector('.popup__form');
 const placeInput = popupAddArticleElement.querySelector('#place');
 const imageInput = popupAddArticleElement.querySelector('#image');
+const saveBtn = document.querySelector('#articleSave-btn');
 //третья форма с изображением
 
 const imageBigPopup = document.querySelector('#imageBigPopup');
@@ -78,7 +79,6 @@ popupElementsAll.forEach((popup) => {
 //здесь же сразу деактивируем кнопу при каждом новом открытии 
 addPlaceButtonElement.addEventListener('click', () => {
     openPopupContainer(popupAddArticleElement);
-    const saveBtn = document.querySelector('#articleSave-btn');
     saveBtn.classList.add('popup__save-btn_disabled');
     saveBtn.disabled = true;
 });
