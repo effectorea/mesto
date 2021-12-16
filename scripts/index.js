@@ -56,18 +56,31 @@ const imageTitle = imageBigPopup.querySelector('.popup__place-name');
 // общие функции открытия/закрытия окна для всех попапов
 const openPopupContainer = function (popup) {
     popup.classList.add('popup_opened');
+    document.addEventListener('keydown', closeByEscape); //накидываем обработчик чтобы закрывалось на эскейпе
 }
 const closePopupContainer = function (popup) {
     popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closeByEscape);
 }
+//перебираем все попапы и на каждый навешиваем обработчик события, чтобы закрывался нажатием на крестик и на оверлей
+popupElementsAll.forEach((popup) => {
+    popup.addEventListener('click', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopupContainer(popup)
+        }
+        if (evt.target.classList.contains('popup__close')) {
+            closePopupContainer(popup)
+        }
+    })
+})
 
-//обработчик события
-//открытие/закрытие второй формы с добавлением нового места 
+//обработчик события для открытия второй формы с добавлением нового места
+//здесь же сразу деактивируем кнопу при каждом новом открытии 
 addPlaceButtonElement.addEventListener('click', () => {
     openPopupContainer(popupAddArticleElement);
-});
-popupAddArticleClose.addEventListener('click', () => {
-    closePopupContainer(popupAddArticleElement);
+    const saveBtn = document.querySelector('#articleSave-btn');
+    saveBtn.classList.add('popup__save-btn_disabled');
+    saveBtn.disabled = true;
 });
 
 //присваивание значения со страницы
@@ -77,23 +90,20 @@ const insertValues = () => {
 };
 
 //обработчик события 
-//открытие/закрытие первой формы
+//открытие первой формы
 profileEditButtonElement.addEventListener('click', () => {
     insertValues();
     openPopupContainer(popupElement);
 });
-popupCloseButtonElement.addEventListener('click', () => {
-    closePopupContainer(popupElement);
-});
 
 //функция подтверждения изменения профиля
-function profileEditFormSubmit(evt) {
+function submitProfileEditForm(evt) {
     evt.preventDefault();
     profileTitle.textContent = nameInput.value;
     profileSubtitle.textContent = missionInput.value;
     closePopupContainer(popupElement);
 }
-profileEditForm.addEventListener('submit', profileEditFormSubmit);
+profileEditForm.addEventListener('submit', submitProfileEditForm);
 
 //организация показа большого изображения 
 const handleBigImageOpen = (cardImage, cardTitle) => {
@@ -103,10 +113,6 @@ const handleBigImageOpen = (cardImage, cardTitle) => {
     openPopupContainer(imageBigPopup);
 };
 
-//обработчик события на кнопку закрытия окна большого изображения
-imageBigClose.addEventListener('click', () => {
-    closePopupContainer(imageBigPopup);
-});
 
 //обработчик события на кнопку "создать новое место" 
 formAddArticleElement.addEventListener('submit', (evt) => {
@@ -138,8 +144,8 @@ function createCard(item) {
     likeButtonElement.addEventListener('click', () => {
         likeButtonElement.classList.toggle('element__heart_active');
     });
-    trasherElement.addEventListener('click', () => {
-        trasherElement.parentElement.remove();
+    trasherElement.addEventListener('click', (evt) => {
+        evt.target.closest('.element').remove();
     });
     elementImage.addEventListener('click', () => {
         handleBigImageOpen(elementImage, elementTitle);
@@ -150,18 +156,11 @@ function createCard(item) {
 function addCard(container, cardElement) {
     container.prepend(cardElement);
 }
-//обработчик события для закрытия любого попапа кликом на оверлей
-popupElementsAll.forEach((element) => element.addEventListener('click', (evt) => {
-    if (evt.target === element) {
-        closePopupContainer(element);
-    }
-}));
 
-//обработчик события для закрытия любого попапа клавишей Escape
-document.addEventListener('keydown', (evt) => {
-    if (evt.code === "Escape") {
-        popupElementsAll.forEach(element => {
-            closePopupContainer(element);
-        });
+//функция закрытия попапа нажатием на эскейп
+function closeByEscape(evt) {
+    if (evt.key === 'Escape') {
+      const openedPopup = document.querySelector('.popup_opened');
+      closePopupContainer(openedPopup);
     }
-});
+  }
