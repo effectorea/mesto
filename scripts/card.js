@@ -9,9 +9,7 @@ class Card {
     _getTemplate() {
         const cardElement = document
         .querySelector(this._selector)
-        .content
-        .querySelector('.element')
-        .cloneNode(true);
+        .content.cloneNode(true);
 
         return cardElement;
     }
@@ -25,21 +23,24 @@ class Card {
         return this._template;
     }
     _setEventListeners() {
-        this._template.querySelector('.element__heart').addEventListener('click', () => {
-            this._handleLike();
+        this._template.querySelector('.element__heart').addEventListener('click', (evt) => {
+            evt.target.classList.toggle('element__heart_active');
         });
         this._template.querySelector('.element__trasher').addEventListener('click', (evt) => {
             evt.target.closest('.element').remove();
         });
+        this._template.querySelector('.element__image').addEventListener('click', () => {
+            imageBig.src = this._link;
+            imageTitle.textContent = this._name;
+            imageBig.alt = this._name;
+            openPopupContainer(imageBigPopup);
+        });
     }
-    _handleLike() {
-        this._template.querySelector('.element__heart').classList.toggle('element__heart_active');
-    }  
 }
 
 initialCards.forEach((item) => {
 	const card = new Message(item, '.item_template');
 	const cardElement = card.generate();
 
-	elements.append(messageElement);
+	elements.append(cardElement);
 });
