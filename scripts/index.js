@@ -1,5 +1,7 @@
 'use strict'
 
+import Card from '../scripts/card.js';
+
 const initialCards = [{
         name: 'Архыз',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -25,12 +27,11 @@ const initialCards = [{
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
-const itemTemplate = document.querySelector('.item_template');
+
 const elements = document.querySelector('.elements');
 const popupElementsAll = document.querySelectorAll('.popup');
-
 const popupElement = document.querySelector('.popup');
-const popupCloseButtonElement = popupElement.querySelector('.popup__close');
+
 const profileEditButtonElement = document.querySelector('.profile__edit-button');
 const addPlaceButtonElement = document.querySelector('.profile__add-button');
 
@@ -42,20 +43,18 @@ const profileSubtitle = document.querySelector('.profile__subtitle');
 
 //вторая форма
 const popupAddArticleElement = document.querySelector('#articleAddPopup');
-const popupAddArticleClose = popupAddArticleElement.querySelector('.popup__close');
 const formAddArticleElement = popupAddArticleElement.querySelector('.popup__form');
 const placeInput = popupAddArticleElement.querySelector('#place');
 const imageInput = popupAddArticleElement.querySelector('#image');
 const saveBtn = document.querySelector('#articleSave-btn');
 //третья форма с изображением
 
-const imageBigPopup = document.querySelector('#imageBigPopup');
-const imageBigClose = imageBigPopup.querySelector('.popup__close');
-const imageBig = imageBigPopup.querySelector('.popup__image');
-const imageTitle = imageBigPopup.querySelector('.popup__place-name');
+export const imageBigPopup = document.querySelector('#imageBigPopup');
+export const imageBig = imageBigPopup.querySelector('.popup__image');
+export const imageTitle = imageBigPopup.querySelector('.popup__place-name');
 
 // общие функции открытия/закрытия окна для всех попапов
-const openPopupContainer = function (popup) {
+export const openPopupContainer = function (popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closeByEscape); //накидываем обработчик чтобы закрывалось на эскейпе
 }
@@ -121,11 +120,11 @@ formAddArticleElement.addEventListener('submit', (evt) => {
         name: placeInput.value,
         link: imageInput.value,
     };
-    addCard(elements, createCard(cardItems));
+    elements.prepend(new Card(cardItems, '.item_template').generate());
     formAddArticleElement.reset();
     closePopupContainer(popupAddArticleElement);
 });
-
+/*
 //применен перебирающий метод для отрисовки всех элементов массива 
 initialCards.forEach((element) => {
     addCard(elements, createCard(element));
@@ -156,7 +155,7 @@ function createCard(item) {
 function addCard(container, cardElement) {
     container.prepend(cardElement);
 }
-
+*/
 //функция закрытия попапа нажатием на эскейп
 function closeByEscape(evt) {
     if (evt.key === 'Escape') {
@@ -164,3 +163,11 @@ function closeByEscape(evt) {
       closePopupContainer(openedPopup);
     }
   }
+
+  //применен перебирающий метод для отрисовки всех элементов массива 
+  initialCards.forEach((item) => {
+	const card = new Card(item, '.item_template');
+	const cardElement = card.generate();
+
+	elements.append(cardElement);
+});

@@ -1,5 +1,5 @@
-
-class Card {
+import { imageBig, imageTitle, imageBigPopup, openPopupContainer} from './index.js';
+export default class Card {
     constructor (data, selector) {
         this._name = data.name;
         this._link = data.link;
@@ -30,17 +30,15 @@ class Card {
             evt.target.closest('.element').remove();
         });
         this._template.querySelector('.element__image').addEventListener('click', () => {
-            imageBig.src = this._link;
-            imageTitle.textContent = this._name;
-            imageBig.alt = this._name;
-            openPopupContainer(imageBigPopup);
+            this._handleBigImage();
         });
+
+    }
+    _handleBigImage() {
+        imageBig.src = this._link;
+        imageTitle.textContent = this._name;
+        imageBig.alt = this._name;
+        openPopupContainer(imageBigPopup);
     }
 }
 
-initialCards.forEach((item) => {
-	const card = new Message(item, '.item_template');
-	const cardElement = card.generate();
-
-	elements.append(cardElement);
-});
