@@ -1,6 +1,7 @@
 'use strict'
 
 import Card from '../scripts/card.js';
+import FormValidator from '../scripts/FormValidator.js';
 
 const initialCards = [{
         name: 'Архыз',
@@ -124,38 +125,7 @@ formAddArticleElement.addEventListener('submit', (evt) => {
     formAddArticleElement.reset();
     closePopupContainer(popupAddArticleElement);
 });
-/*
-//применен перебирающий метод для отрисовки всех элементов массива 
-initialCards.forEach((element) => {
-    addCard(elements, createCard(element));
-});
 
-//функция создания карточки
-function createCard(item) {
-    const htmlElement = itemTemplate.content.cloneNode(true);
-    const likeButtonElement = htmlElement.querySelector('.element__heart');
-    const trasherElement = htmlElement.querySelector('.element__trasher');
-    const elementTitle = htmlElement.querySelector('.element__title');
-    const elementImage = htmlElement.querySelector('.element__image');
-    elementTitle.innerText = item.name;
-    elementImage.alt = item.name;
-    elementImage.src = item.link;
-    likeButtonElement.addEventListener('click', () => {
-        likeButtonElement.classList.toggle('element__heart_active');
-    });
-    trasherElement.addEventListener('click', (evt) => {
-        evt.target.closest('.element').remove();
-    });
-    elementImage.addEventListener('click', () => {
-        handleBigImageOpen(elementImage, elementTitle);
-    });
-    return htmlElement;
-}
-//функция добавления карточки
-function addCard(container, cardElement) {
-    container.prepend(cardElement);
-}
-*/
 //функция закрытия попапа нажатием на эскейп
 function closeByEscape(evt) {
     if (evt.key === 'Escape') {
@@ -171,3 +141,22 @@ function closeByEscape(evt) {
 
 	elements.append(cardElement);
 });
+
+const config = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__save-btn',
+    inactiveButtonClass: 'popup__save-btn_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible'
+  };
+
+  const enableValidation = (config) => {
+    const forms = document.querySelectorAll(config.formSelector);
+
+    forms.forEach((form) => {
+        const validation = new FormValidator(config, form);
+        validation.enableValidation();
+    });
+}
+enableValidation(config);
