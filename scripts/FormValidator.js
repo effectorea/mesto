@@ -58,20 +58,29 @@ export default class FormValidator {
     _setInputListeners () {
     
     //вызываем тут эту функцию тоже, чтобы кнопка изначально была неактивной
-    this._toggleButtonError();
-    this._inputs.forEach((input) => {
-        input.addEventListener('input', () => {
-            this._checkInputValidity(input);
-            this._toggleButtonError();
+        this._toggleButtonError();
+        this._inputs.forEach((input) => {
+            input.addEventListener('input', () => {
+                this._checkInputValidity(input);
+                this._toggleButtonError();
         });
     });
     }
+    
+
     //включаем валидацию
     enableValidation() {
         this._form.addEventListener('submit', (evt) => {
             evt.preventDefault();
         });
         this._setInputListeners();
+    }
+    //метод для удаления ошибок и деактивации кнопки
+    clearValidation() {
+        this._toggleButtonError();
+        this._inputs.forEach((input) => {
+            this._hideError(input);
+        });
     }
 }
 

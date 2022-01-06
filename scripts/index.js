@@ -29,6 +29,17 @@ const initialCards = [{
     }
 ];
 
+const config = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__save-btn',
+    inactiveButtonClass: 'popup__save-btn_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible'
+  };
+
+
+
 const elements = document.querySelector('.elements');
 const popupElementsAll = document.querySelectorAll('.popup');
 const popupElement = document.querySelector('.popup');
@@ -36,7 +47,8 @@ const popupElement = document.querySelector('.popup');
 const profileEditButtonElement = document.querySelector('.profile__edit-button');
 const addPlaceButtonElement = document.querySelector('.profile__add-button');
 
-const profileEditForm = document.querySelector('.popup__form');
+const profilePopup = document.querySelector('#profileEditPopup');
+const profileEditForm = profilePopup.querySelector('.popup__form');
 const nameInput = document.querySelector('.popup__input_add_name');
 const missionInput = document.querySelector('.popup__input_add_mission');
 const profileTitle = document.querySelector('.profile__title');
@@ -48,6 +60,9 @@ const formAddArticleElement = popupAddArticleElement.querySelector('.popup__form
 const placeInput = popupAddArticleElement.querySelector('#place');
 const imageInput = popupAddArticleElement.querySelector('#image');
 const saveBtn = document.querySelector('#articleSave-btn');
+
+//получаем экземпляр валидации формы именно профиля, чтобы потом его использовать в очистке ошибок
+const profileValidation = new FormValidator(config, profileEditForm);
 //третья форма с изображением
 
 export const imageBigPopup = document.querySelector('#imageBigPopup');
@@ -66,10 +81,7 @@ const closePopupContainer = function (popup) {
 //перебираем все попапы и на каждый навешиваем обработчик события, чтобы закрывался нажатием на крестик и на оверлей
 popupElementsAll.forEach((popup) => {
     popup.addEventListener('click', (evt) => {
-        if (evt.target.classList.contains('popup_opened')) {
-            closePopupContainer(popup)
-        }
-        if (evt.target.classList.contains('popup__close')) {
+        if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close')) {
             closePopupContainer(popup)
         }
     })
@@ -87,6 +99,7 @@ addPlaceButtonElement.addEventListener('click', () => {
 const insertValues = () => {
     nameInput.value = profileTitle.textContent;
     missionInput.value = profileSubtitle.textContent;
+    
 };
 
 //обработчик события 
@@ -94,6 +107,7 @@ const insertValues = () => {
 profileEditButtonElement.addEventListener('click', () => {
     insertValues();
     openPopupContainer(popupElement);
+    profileValidation.clearValidation(); //чистим окно, чтобы не пказывались сохраненные ошибки
 });
 
 //функция подтверждения изменения профиля
@@ -102,6 +116,7 @@ function submitProfileEditForm(evt) {
     profileTitle.textContent = nameInput.value;
     profileSubtitle.textContent = missionInput.value;
     closePopupContainer(popupElement);
+    
 }
 profileEditForm.addEventListener('submit', submitProfileEditForm);
 
@@ -141,15 +156,6 @@ function closeByEscape(evt) {
 
 	elements.append(cardElement);
 });
-
-const config = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__save-btn',
-    inactiveButtonClass: 'popup__save-btn_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible'
-  };
 
   const enableValidation = (config) => {
     const forms = document.querySelectorAll(config.formSelector);
