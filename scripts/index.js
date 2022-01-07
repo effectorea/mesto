@@ -1,6 +1,6 @@
 'use strict'
 
-import Card from '../scripts/card.js';
+import Card from './Card.js';
 import FormValidator from '../scripts/FormValidator.js';
 
 const initialCards = [{
