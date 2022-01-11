@@ -7,7 +7,7 @@ export default class FormValidator {
         this._inputError = this._config.inputErrorClass;
         this._error = this._config.errorClass;
         this._inputs = this._form.querySelectorAll(this._config.inputSelector);
-        this._submitButton = this._form.querySelector(this._config.submitButtonSelector)
+        this._submitButton = this._form.querySelector(this._config.submitButtonSelector);
     }
 
     //создаем приватный метод показа ошибки

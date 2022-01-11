@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 import Card from './Card.js';
 import FormValidator from '../scripts/FormValidator.js';
@@ -73,19 +73,19 @@ export const imageTitle = imageBigPopup.querySelector('.popup__place-name');
 export const openPopupContainer = function (popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closeByEscape); //накидываем обработчик чтобы закрывалось на эскейпе
-}
+};
 const closePopupContainer = function (popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', closeByEscape);
-}
+};
 //перебираем все попапы и на каждый навешиваем обработчик события, чтобы закрывался нажатием на крестик и на оверлей
 popupElementsAll.forEach((popup) => {
     popup.addEventListener('click', (evt) => {
         if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close')) {
-            closePopupContainer(popup)
+            closePopupContainer(popup);
         }
-    })
-})
+    });
+});
 
 //обработчик события для открытия второй формы с добавлением нового места
 //здесь же сразу деактивируем кнопу при каждом новом открытии 
@@ -164,5 +164,5 @@ function closeByEscape(evt) {
         const validation = new FormValidator(config, form);
         validation.enableValidation();
     });
-}
+};
 enableValidation(config);
