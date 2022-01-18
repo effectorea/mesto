@@ -1,9 +1,10 @@
-import { imageBig, imageTitle, imageBigPopup, openPopupContainer} from './index.js';
+/* import { imageBig, imageTitle, imageBigPopup, openPopupContainer} from './index.js'; */
 export default class Card {
-    constructor (data, selector) {
+    constructor (data, selector, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
         this._selector = selector;
+        this._handleCardClick = handleCardClick;
 
     }
     _getTemplate() {
@@ -30,15 +31,10 @@ export default class Card {
             evt.target.closest('.element').remove();
         });
         this._template.querySelector('.element__image').addEventListener('click', () => {
-            this._handleBigImage();
+            const info = {link: this._link, name: this._name};
+            this._handleCardClick(info);
         });
 
-    }
-    _handleBigImage() {
-        imageBig.src = this._link;
-        imageTitle.textContent = this._name;
-        imageBig.alt = this._name;
-        openPopupContainer(imageBigPopup);
     }
 }
 
