@@ -1,4 +1,3 @@
-/* import { imageBig, imageTitle, imageBigPopup, openPopupContainer} from './index.js'; */
 export default class Card {
     constructor (data, selector, handleCardClick) {
         this._name = data.name;
