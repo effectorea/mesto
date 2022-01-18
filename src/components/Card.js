@@ -8,10 +8,7 @@ export default class Card {
 
     }
     _getTemplate() {
-        const cardElement = document
-        .querySelector(this._selector)
-        .content.cloneNode(true);
-
+        const cardElement = document.querySelector(this._selector).content.querySelector('.element').cloneNode(true);
         return cardElement;
     }
     generate() {
@@ -27,8 +24,9 @@ export default class Card {
         this._template.querySelector('.element__heart').addEventListener('click', (evt) => {
             evt.target.classList.toggle('element__heart_active');
         });
-        this._template.querySelector('.element__trasher').addEventListener('click', (evt) => {
-            evt.target.closest('.element').remove();
+        this._template.querySelector('.element__trasher').addEventListener('click', () => {
+            this._template.remove();
+            this._template = null;
         });
         this._template.querySelector('.element__image').addEventListener('click', () => {
             const info = {link: this._link, name: this._name};
