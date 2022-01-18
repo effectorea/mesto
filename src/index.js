@@ -1,13 +1,12 @@
 'use strict';
 
-import Card from '../scripts/Card.js';
-import FormValidator from '../scripts/FormValidator.js';
-import Section from '../scripts/Section.js';
-import PopupWithImage from '../scripts/PopupWithImage.js';
-import PopupWithForm from '../scripts/PopupWithForm.js';
-import UserInfo from '../scripts/UserInfo.js';
+import Card from './scripts/Card.js';
+import FormValidator from './scripts/FormValidator.js';
+import Section from './scripts/Section.js';
+import PopupWithImage from './scripts/PopupWithImage.js';
+import PopupWithForm from './scripts/PopupWithForm.js';
+import UserInfo from './scripts/UserInfo.js';
 import {
-    initialCards,
     config,
     info,
     elements,
@@ -18,9 +17,43 @@ import {
     placeInput,
     imageInput,
     saveBtn
-} from '../scripts/constants.js';
+} from './scripts/constants.js';
+
+import './pages/index.css';
+
+const castle = new URL('./images/castle.jpg', import.meta.url);
+const japan = new URL('./images/china.jpg', import.meta.url);
+const church = new URL('./images/church.jpg', import.meta.url);
+const field = new URL('./images/field.jpg', import.meta.url);
+const mountainhouse = new URL('./images/mountainhouse.jpg', import.meta.url);
+const stronghold = new URL('./images/philip-jahn-hacFJtpL-L4-unsplash.jpg', import.meta.url);
 
 
+const initialCards = [{
+    name: 'Замок',
+    link: castle
+},
+{
+    name: 'Япония',
+    link: japan
+},
+{
+    name: 'Церковь',
+    link: church
+},
+{
+    name: 'Поле',
+    link: field
+},
+{
+    name: 'Дом в горах',
+    link: mountainhouse
+},
+{
+    name: 'Крепость',
+    link: stronghold
+}
+];
 //получаем по экземпляру валидации форм 
 const profileValidation = new FormValidator(config, profileEditForm);
 profileValidation.enableValidation();
@@ -90,3 +123,11 @@ profileEditButtonElement.addEventListener('click', () => {
     profileValidation.clearValidation();
     profileEditPopup.open();
 });
+
+
+const numbers = [2, 3, 5];
+
+// Стрелочная функция. Не запнётся ли на ней Internet Explorer?
+const doubledNumbers = numbers.map(number => number * 2);
+
+console.log(doubledNumbers); // 4, 6, 10
