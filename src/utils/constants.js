@@ -24,3 +24,37 @@ export const formAddArticleElement = popupAddArticleElement.querySelector('.popu
 export const placeInput = popupAddArticleElement.querySelector('#place');
 export const imageInput = popupAddArticleElement.querySelector('#image');
 export const saveBtn = document.querySelector('#articleSave-btn');
+
+export const castle = new URL('../images/castle.jpg', import.meta.url);
+export const japan = new URL('../images/china.jpg', import.meta.url);
+export const church = new URL('../images/church.jpg', import.meta.url);
+export const field = new URL('../images/field.jpg', import.meta.url);
+export const mountainhouse = new URL('../images/mountainhouse.jpg', import.meta.url);
+export const stronghold = new URL('../images/philip-jahn-hacFJtpL-L4-unsplash.jpg', import.meta.url);
+
+
+export const initialCards = [{
+    name: 'Замок',
+    link: castle
+},
+{
+    name: 'Япония',
+    link: japan
+},
+{
+    name: 'Церковь',
+    link: church
+},
+{
+    name: 'Поле',
+    link: field
+},
+{
+    name: 'Дом в горах',
+    link: mountainhouse
+},
+{
+    name: 'Крепость',
+    link: stronghold
+}
+];

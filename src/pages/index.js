@@ -1,11 +1,11 @@
 'use strict';
 
-import Card from './components/Card.js';
-import FormValidator from './components/FormValidator.js';
-import Section from './components/Section.js';
-import PopupWithImage from './components/PopupWithImage.js';
-import PopupWithForm from './components/PopupWithForm.js';
-import UserInfo from './components/UserInfo.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import Section from '../components/Section.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import UserInfo from '../components/UserInfo.js';
 import {
     config,
     info,
@@ -16,44 +16,19 @@ import {
     formAddArticleElement,
     placeInput,
     imageInput,
-    saveBtn
-} from './utils/constants.js';
+    saveBtn,
+    castle,
+    japan,
+    church,
+    field,
+    mountainhouse,
+    stronghold,
+    initialCards
+} from '../utils/constants.js';
 
-import './pages/index.css';
-
-const castle = new URL('./images/castle.jpg', import.meta.url);
-const japan = new URL('./images/china.jpg', import.meta.url);
-const church = new URL('./images/church.jpg', import.meta.url);
-const field = new URL('./images/field.jpg', import.meta.url);
-const mountainhouse = new URL('./images/mountainhouse.jpg', import.meta.url);
-const stronghold = new URL('./images/philip-jahn-hacFJtpL-L4-unsplash.jpg', import.meta.url);
+import './index.css';
 
 
-const initialCards = [{
-    name: 'Замок',
-    link: castle
-},
-{
-    name: 'Япония',
-    link: japan
-},
-{
-    name: 'Церковь',
-    link: church
-},
-{
-    name: 'Поле',
-    link: field
-},
-{
-    name: 'Дом в горах',
-    link: mountainhouse
-},
-{
-    name: 'Крепость',
-    link: stronghold
-}
-];
 //получаем по экземпляру валидации форм 
 const profileValidation = new FormValidator(config, profileEditForm);
 profileValidation.enableValidation();
