@@ -83,16 +83,20 @@ function cardFormSubmit() {
         link: imageInput.value,
     };
     elements.prepend(createCard(cardItems));
+    saveBtn.classList.add('popup__save-btn_disabled');
+    saveBtn.disabled = true;
     addCard.close();
 }
+
+//АРИНА, благодарю Вас за быстрое и качественное ревью
+//я даже отдохнуть не успел после первой итерации ))
+//только комп выключил, сел киношку глянуть и тут...))
 
 
 //обработчик события на кнопу добавления карточки
 addPlaceButtonElement.addEventListener('click', () => {
     addCard.open();
-    addArticleValidation.clearValidation();
-    saveBtn.classList.add('popup__save-btn_disabled');
-    saveBtn.disabled = true;
+    addArticleValidation.clearValidation();   
 });
 
 //обработчик события на форму редактирования профиля

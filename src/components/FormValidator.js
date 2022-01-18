@@ -37,7 +37,7 @@ export default class FormValidator {
     }
 
     //приватный метод, переключающий кнопки с активных на неактивные
-    _toggleButtonError(button) {
+    toggleButtonError() {
     if (this._hasInvalidInput()) {
         this._submitButton.classList.add(this._inactiveButton);
         this._submitButton.disabled = true;
@@ -58,11 +58,11 @@ export default class FormValidator {
     _setInputListeners () {
     
     //вызываем тут эту функцию тоже, чтобы кнопка изначально была неактивной
-        this._toggleButtonError();
+        this.toggleButtonError();
         this._inputs.forEach((input) => {
             input.addEventListener('input', () => {
                 this._checkInputValidity(input);
-                this._toggleButtonError();
+                this.toggleButtonError();
         });
     });
     }
@@ -77,7 +77,6 @@ export default class FormValidator {
     }
     //метод для удаления ошибок и деактивации кнопки
     clearValidation() {
-        this._toggleButtonError();
         this._inputs.forEach((input) => {
             this._hideError(input);
         });
