@@ -66,11 +66,14 @@ const cardList = new Section({
 cardList.renderItems();
 
 //функция отрисовки карточки 
-function cardRender(item) {
+function cardRender(cardElement) {
+    cardList.addItem(createCard(cardElement));
+}
+//функция создания карточки
+function createCard(item) {
     const card = new Card(item, '.item_template', handleCardClick);
     const cardElement = card.generate();
-    cardList.addItem(cardElement);
-    addCard.close();
+    return cardElement
 }
 
 //функция добавления карточки при нажатии кнопки "создать"
@@ -79,7 +82,7 @@ function cardFormSubmit() {
         name: placeInput.value,
         link: imageInput.value,
     };
-    elements.prepend(new Card(cardItems, '.item_template', handleCardClick).generate());
+    elements.prepend(createCard(cardItems));
     addCard.close();
 }
 
