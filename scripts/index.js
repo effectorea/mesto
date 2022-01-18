@@ -6,62 +6,20 @@ import Section from './Section.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
 import UserInfo from './UserInfo.js';
+import {
+    initialCards,
+    config,
+    info,
+    elements,
+    profileEditButtonElement,
+    addPlaceButtonElement,
+    profileEditForm,
+    formAddArticleElement,
+    placeInput,
+    imageInput,
+    saveBtn
+} from './constants.js';
 
-const initialCards = [{
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
-
-const config = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__save-btn',
-    inactiveButtonClass: 'popup__save-btn_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible'
-  };
-
-const info = {
-    nameSelector: '.profile__title',
-    missionSelector: '.profile__subtitle',
-    inputNameSelector: '.popup__input_add_name',
-    inputMissionSelector: '.popup__input_add_mission'
-};
-
-const elements = document.querySelector('.elements');
-const profileEditButtonElement = document.querySelector('.profile__edit-button');
-const addPlaceButtonElement = document.querySelector('.profile__add-button');
-
-const profilePopup = document.querySelector('#profileEditPopup');
-const profileEditForm = profilePopup.querySelector('.popup__form');
-
-//вторая форма
-const popupAddArticleElement = document.querySelector('#articleAddPopup');
-const formAddArticleElement = popupAddArticleElement.querySelector('.popup__form');
-const placeInput = popupAddArticleElement.querySelector('#place');
-const imageInput = popupAddArticleElement.querySelector('#image');
-const saveBtn = document.querySelector('#articleSave-btn');
 
 //получаем по экземпляру валидации форм 
 const profileValidation = new FormValidator(config, profileEditForm);
@@ -79,8 +37,7 @@ profileEditPopup.setEventListeners();
 //функция подтверждения изменения профиля
 function submitProfileEditForm() {
     userInfo.setUserInfo();
-    profileEditPopup.close();
-    
+    profileEditPopup.close();  
 }
 
 //создаем попап с показом большого изображения
