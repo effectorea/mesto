@@ -76,6 +76,7 @@ function cardFormSubmit() {
         link: imageInput.value,
     };
     cardList.addItemPrepend(createCard(cardItems));
+    addArticleValidation.toggleButtonError();
     addCard.close();
 }
 
