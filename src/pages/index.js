@@ -16,13 +16,6 @@ import {
     formAddArticleElement,
     placeInput,
     imageInput,
-    saveBtn,
-    castle,
-    japan,
-    church,
-    field,
-    mountainhouse,
-    stronghold,
     initialCards
 } from '../utils/constants.js';
 
@@ -82,21 +75,15 @@ function cardFormSubmit() {
         name: placeInput.value,
         link: imageInput.value,
     };
-    elements.prepend(createCard(cardItems));
-    saveBtn.classList.add('popup__save-btn_disabled');
-    saveBtn.disabled = true;
+    cardList.addItemPrepend(createCard(cardItems));
     addCard.close();
 }
-
-//АРИНА, благодарю Вас за быстрое и качественное ревью
-//я даже отдохнуть не успел после первой итерации ))
-//только комп выключил, сел киношку глянуть и тут...))
-
 
 //обработчик события на кнопу добавления карточки
 addPlaceButtonElement.addEventListener('click', () => {
     addCard.open();
-    addArticleValidation.clearValidation();   
+    addArticleValidation.clearValidation();
+    addArticleValidation.toggleButtonError();   
 });
 
 //обработчик события на форму редактирования профиля

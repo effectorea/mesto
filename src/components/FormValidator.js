@@ -36,7 +36,7 @@ export default class FormValidator {
     return Array.from(this._inputs).some((el) => !el.validity.valid);
     }
 
-    //приватный метод, переключающий кнопки с активных на неактивные
+    //метод, переключающий кнопки с активных на неактивные
     toggleButtonError() {
     if (this._hasInvalidInput()) {
         this._submitButton.classList.add(this._inactiveButton);

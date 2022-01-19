@@ -18,4 +18,8 @@ export default class Section {
     addItem(element) {
         this._container.append(element);
     }
+    //метод, который будет вставлять добавленную карточку в начало
+    addItemPrepend(element) { 
+        this._container.prepend(element); 
+    }
 }
