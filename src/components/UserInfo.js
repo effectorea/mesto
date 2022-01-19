@@ -1,3 +1,4 @@
+//класс отвечает за управление отображением информации о пользователе на странице
 export default class UserInfo{
     constructor(info) {
         this._info = info;
