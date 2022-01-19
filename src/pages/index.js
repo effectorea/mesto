@@ -90,6 +90,7 @@ addPlaceButtonElement.addEventListener('click', () => {
 //обработчик события на форму редактирования профиля
 profileEditButtonElement.addEventListener('click', () => {
     userInfo.getUserInfo();
+    profileValidation.toggleButtonError();
     profileValidation.clearValidation();
     profileEditPopup.open();
 });
