@@ -28,7 +28,7 @@ export const imageInput = popupAddArticleElement.querySelector('#image');
 export const saveBtn = document.querySelector('#articleSave-btn');
 export const avatarPopup = document.querySelector('#changeAvatarPopup');
 export const avatarEditForm = avatarPopup.querySelector('.popup__form');
-export const avatarEditButton = document.querySelector('.profile__avatar');
+export const avatarEditButton = document.querySelector('.profile_wrapper');
 
 export const castle = new URL('../images/castle.jpg', import.meta.url);
 export const japan = new URL('../images/china.jpg', import.meta.url);
