@@ -16,7 +16,10 @@ import {
     formAddArticleElement,
     placeInput,
     imageInput,
-    initialCards
+    initialCards,
+    avatarPopup,
+    avatarEditForm,
+    avatarEditButton
 } from '../utils/constants.js';
 
 import './index.css';
@@ -27,6 +30,8 @@ const profileValidation = new FormValidator(config, profileEditForm);
 profileValidation.enableValidation();
 const addArticleValidation = new FormValidator(config, formAddArticleElement);
 addArticleValidation.enableValidation();
+const changeAvatarValidation = new FormValidator(config, avatarEditForm);
+changeAvatarValidation.enableValidation();
 
 //создаем экземпляр класса для раьботы с профилем пользователя
 const userInfo = new UserInfo(info);
@@ -35,10 +40,20 @@ const userInfo = new UserInfo(info);
 const profileEditPopup = new PopupWithForm('#profileEditPopup', submitProfileEditForm, config);
 profileEditPopup.setEventListeners();
 
+//создаем попап аватара
+const avatarEditPopup = new PopupWithForm('#changeAvatarPopup', submitAvatarEditForm, config);
+avatarEditPopup.setEventListeners();
+
 //функция подтверждения изменения профиля
 function submitProfileEditForm() {
     userInfo.setUserInfo();
     profileEditPopup.close();  
+}
+
+//функция подтверждения изменения аватара
+function submitAvatarEditForm() {
+    userInfo.setAvatar();
+    avatarEditPopup.close();
 }
 
 //создаем попап с показом большого изображения
@@ -93,4 +108,11 @@ profileEditButtonElement.addEventListener('click', () => {
     profileValidation.toggleButtonError();
     profileValidation.clearValidation();
     profileEditPopup.open();
+});
+
+//обработчик события на аватар
+avatarEditButton.addEventListener('click', () => {
+    changeAvatarValidation.toggleButtonError();
+    changeAvatarValidation.clearValidation();
+    avatarEditPopup.open();
 });

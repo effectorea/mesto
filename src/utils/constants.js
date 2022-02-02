@@ -11,7 +11,9 @@ export const info = {
 nameSelector: '.profile__title',
 missionSelector: '.profile__subtitle',
 inputNameSelector: '.popup__input_add_name',
-inputMissionSelector: '.popup__input_add_mission'
+inputMissionSelector: '.popup__input_add_mission',
+avatarSelector: '.profile__avatar',
+inputAvatarSelector: '.popup__input_change_avatar'
 };
 
 export const elements = document.querySelector('.elements');
@@ -24,6 +26,9 @@ export const formAddArticleElement = popupAddArticleElement.querySelector('.popu
 export const placeInput = popupAddArticleElement.querySelector('#place');
 export const imageInput = popupAddArticleElement.querySelector('#image');
 export const saveBtn = document.querySelector('#articleSave-btn');
+export const avatarPopup = document.querySelector('#changeAvatarPopup');
+export const avatarEditForm = avatarPopup.querySelector('.popup__form');
+export const avatarEditButton = document.querySelector('.profile__avatar');
 
 export const castle = new URL('../images/castle.jpg', import.meta.url);
 export const japan = new URL('../images/china.jpg', import.meta.url);

@@ -97,6 +97,25 @@
       </div>
     </div>
 
+    <div id="changeAvatarPopup" class="popup">
+      <div class="popup__container">
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form name="text" action="#" class="popup__form" novalidate>
+          <input
+            required
+            placeholder="Ссылка на картинку"
+            name="avatar"
+            id="avatar"
+            type="url"
+            class="popup__input popup__input_change_avatar"
+          />
+          <span id="avatar-error" class="popup__error"></span>
+          <button type="submit" id="avatarSave-btn" class="popup__save-btn">Сохранить</button>
+        </form>
+        <button type="button" class="popup__close"></button>
+      </div>
+    </div>
+
     <div id="imageBigPopup" class="popup popup_image_big">
       <div class="popup__content">
         <button type="button" class="popup__close"></button>

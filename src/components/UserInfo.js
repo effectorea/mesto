@@ -6,6 +6,8 @@ export default class UserInfo{
         this._mission = document.querySelector(this._info.missionSelector);
         this._inputName = document.querySelector(this._info.inputNameSelector);
         this._inputMission = document.querySelector(this._info.inputMissionSelector);
+        this._avatar = document.querySelector(this._info.avatarSelector);
+        this._inputAvatar = document.querySelector(this._info.inputAvatarSelector);
     }
     getUserInfo() {
         this._inputName.value = this._name.textContent;
@@ -14,5 +16,8 @@ export default class UserInfo{
     setUserInfo() {
         this._name.textContent = this._inputName.value;
         this._mission.textContent = this._inputMission.value;    
+    }
+    setAvatar() {
+        this._avatar.src = this._inputAvatar.value;
     }
 }
