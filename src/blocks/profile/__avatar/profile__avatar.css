@@ -5,7 +5,7 @@
     border-radius: 50%;
     display: block;
     flex-grow: 0;
-
+    object-fit: cover;
 }
 
 

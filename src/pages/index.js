@@ -6,6 +6,7 @@ import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js';
 import {
     config,
     info,
@@ -16,7 +17,6 @@ import {
     formAddArticleElement,
     placeInput,
     imageInput,
-    initialCards,
     avatarPopup,
     avatarEditForm,
     avatarEditButton,
@@ -26,6 +26,27 @@ import {
 
 import './index.css';
 
+//получаем экземпляр для работы с сервером
+const api = new Api({
+    url: 'https://mesto.nomoreparties.co/v1/cohort-35',
+    headers: {
+        authorization: '396aec5a-cf08-4342-be3f-c1c3fdb65106',
+        'Content-Type': 'application/json'
+    }
+});
+
+let userId = null;
+
+//записываем данные (когда выполнятся все промисы)
+Promise.all([api.getCards(), api.getUserInfo()])
+.then(([dataCards, dataUser]) => {
+    userId = dataUser._id;
+    cardList.renderItems(dataCards);
+    userInfo.getUserInfo(dataUser);
+    userInfo.getAvatar(dataUser);
+    console.log('Данные карточек', dataCards);
+    console.log('Данные полбзователя', dataUser);
+});
 
 //получаем по экземпляру валидации форм 
 const profileValidation = new FormValidator(config, profileEditForm);
@@ -81,10 +102,9 @@ addCard.setEventListeners();
 
 //отрисовываем все карточки с помощью класса Section 
 const cardList = new Section({
-    items: initialCards, 
-    renderer: (item) => cardRender(item)
+    renderer: (data) => cardRender(data)
   }, '.elements');
-cardList.renderItems();
+
 
 //функция отрисовки карточки 
 function cardRender(cardElement) {
@@ -117,7 +137,7 @@ addPlaceButtonElement.addEventListener('click', () => {
 
 //обработчик события на форму редактирования профиля
 profileEditButtonElement.addEventListener('click', () => {
-    userInfo.getUserInfo();
+    userInfo.renderUserInfo();
     profileValidation.toggleButtonError();
     profileValidation.clearValidation();
     profileEditPopup.open();

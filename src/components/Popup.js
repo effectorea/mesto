@@ -25,7 +25,12 @@ export default class Popup {
         //Модальное окно также закрывается при клике на затемнённую область вокруг формы (первое условие)
         setEventListeners() {
             this._popup.addEventListener('click', (evt) => {
-                if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close')) {
+                if (evt.target.classList.contains('popup__close')) {
+                    this.close();
+                }
+            });
+            this._popup.addEventListener('mousedown', (evt) => {
+                if (evt.target.classList.contains('popup_opened')) {
                     this.close();
                 }
             });
