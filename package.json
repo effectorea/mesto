@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/effectorea/mesto/issues"
   },
-  "homepage": "https://github.com/effectorea/mesto#readme",
+  "homepage": "https://effectorea.github.io/mesto/index.html",
   "devDependencies": {
     "@babel/core": "^7.16.7",
     "@babel/preset-env": "^7.16.8",

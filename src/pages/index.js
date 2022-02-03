@@ -19,7 +19,9 @@ import {
     initialCards,
     avatarPopup,
     avatarEditForm,
-    avatarEditButton
+    avatarEditButton,
+    confirmationForm,
+    confirmationPopup
 } from '../utils/constants.js';
 
 import './index.css';
@@ -32,6 +34,8 @@ const addArticleValidation = new FormValidator(config, formAddArticleElement);
 addArticleValidation.enableValidation();
 const changeAvatarValidation = new FormValidator(config, avatarEditForm);
 changeAvatarValidation.enableValidation();
+const confirmationValidation = new FormValidator(config, confirmationForm);
+confirmationValidation.enableValidation();
 
 //создаем экземпляр класса для раьботы с профилем пользователя
 const userInfo = new UserInfo(info);
@@ -44,6 +48,10 @@ profileEditPopup.setEventListeners();
 const avatarEditPopup = new PopupWithForm('#changeAvatarPopup', submitAvatarEditForm, config);
 avatarEditPopup.setEventListeners();
 
+//создаем попап подтверждения удаления карточки
+const confirmationDeletePopup = new PopupWithForm('#confirmationPopup', submitConfirmationForm, config);
+confirmationDeletePopup.setEventListeners();
+
 //функция подтверждения изменения профиля
 function submitProfileEditForm() {
     userInfo.setUserInfo();
@@ -54,6 +62,11 @@ function submitProfileEditForm() {
 function submitAvatarEditForm() {
     userInfo.setAvatar();
     avatarEditPopup.close();
+}
+
+//функция подтверждения удаления
+function submitConfirmationForm() {
+    confirmationDeletePopup.close();
 }
 
 //создаем попап с показом большого изображения
