@@ -50,7 +50,16 @@ export default class Api {
         })
         .then(onResponse)
       }
-
+    
+    addCard(element) {
+      return fetch(`${this._url}/cards`, {
+        method: 'POST',
+        headers: this._headers,
+        body: JSON.stringify(element)
+      })
+      .then(onResponse)
+    }
+      
     setCardLike(cardId) {
         return fetch(`${this._url}/cards/${cardId}/likes`, {
             method: 'PUT',

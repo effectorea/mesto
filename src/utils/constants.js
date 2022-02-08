@@ -23,6 +23,7 @@ export const profilePopup = document.querySelector('#profileEditPopup');
 export const profileSaveBtn = profilePopup.querySelector('.popup__save-btn');
 export const profileEditForm = profilePopup.querySelector('.popup__form');
 export const popupAddArticleElement = document.querySelector('#articleAddPopup');
+export const addArticleBtn = popupAddArticleElement.querySelector('.popup__save-btn');
 export const formAddArticleElement = popupAddArticleElement.querySelector('.popup__form');
 export const placeInput = popupAddArticleElement.querySelector('#place');
 export const imageInput = popupAddArticleElement.querySelector('#image');

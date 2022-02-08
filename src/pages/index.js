@@ -23,7 +23,8 @@ import {
     confirmationForm,
     confirmationPopup,
     profileSaveBtn,
-    avatarSaveBtn
+    avatarSaveBtn,
+    addArticleBtn
 } from '../utils/constants.js';
 
 import './index.css';
@@ -162,14 +163,24 @@ function createCard(data) {
 }
 
 //функция добавления карточки при нажатии кнопки "создать"
-function cardFormSubmit() {
-    const cardItems = {
-        name: placeInput.value,
-        link: imageInput.value,
+function cardFormSubmit(inputs) {
+    const cardItem = {
+        name: inputs.name,
+        link: inputs.link,
     };
-    cardList.addItemPrepend(createCard(cardItems));
-    addArticleValidation.toggleButtonError();
-    addCard.close();
+    addArticleBtn.textContent = 'Создание...'
+    api.addCard(cardItem)
+        .then((res) => {
+            cardList.addItemPrepend(createCard(res));
+            addArticleValidation.toggleButtonError();
+            addCard.close();
+        })
+        .catch((err) => {
+            console.log(`Невозможно создать новую карточку ${err}`);
+        })
+        .finally(() => {
+            addArticleBtn.textContent = 'Создать';
+        });
 }
 
 //обработчик события на кнопу добавления карточки
