@@ -21,7 +21,9 @@ import {
     avatarEditForm,
     avatarEditButton,
     confirmationForm,
-    confirmationPopup
+    confirmationPopup,
+    profileSaveBtn,
+    avatarSaveBtn
 } from '../utils/constants.js';
 
 import './index.css';
@@ -42,8 +44,8 @@ Promise.all([api.getCards(), api.getUserInfo()])
 .then(([dataCards, dataUser]) => {
     userId = dataUser._id;
     cardList.renderItems(dataCards);
-    userInfo.getUserInfo(dataUser);
-    userInfo.getAvatar(dataUser);
+    userInfo.setUserInfo(dataUser);
+    userInfo.setAvatar(dataUser);
     console.log('Данные карточек', dataCards);
     console.log('Данные полбзователя', dataUser);
 });
@@ -74,15 +76,41 @@ const confirmationDeletePopup = new PopupWithForm('#confirmationPopup', submitCo
 confirmationDeletePopup.setEventListeners();
 
 //функция подтверждения изменения профиля
-function submitProfileEditForm() {
-    userInfo.setUserInfo();
-    profileEditPopup.close();  
+function submitProfileEditForm(values) {
+    profileSaveBtn.textContent = 'Сохранение...'
+    api.setInfo(values)
+        .then((res) => {
+        userInfo.setUserInfo({
+            name: res.name,
+            about: res.about
+        });
+        profileEditPopup.close();
+    })
+    .catch((err) => {
+        console.log(`Ошибка при попытке изменить данные пользователя ${err}`);
+    })
+    .finally(() => {
+        profileSaveBtn.textContent = 'Сохранить';
+    });
+      
 }
 
 //функция подтверждения изменения аватара
-function submitAvatarEditForm() {
-    userInfo.setAvatar();
-    avatarEditPopup.close();
+function submitAvatarEditForm(value) {
+    avatarSaveBtn.textContent = 'Сохранение...'
+    api.setUserAvatar(value)
+        .then((res) => {
+            userInfo.setAvatar({
+                avatar: res.avatar
+            });
+            avatarEditPopup.close();
+        })
+        .catch((err) => {
+            console.log(`Нельзя загрузить аватар ${err}`);
+        })
+        .finally(() => {
+            avatarSaveBtn.textContent = 'Сохранить';
+        });
 }
 
 //функция подтверждения удаления
@@ -93,7 +121,22 @@ function submitConfirmationForm() {
 //создаем попап с показом большого изображения
 const imageBigPopup = new PopupWithImage('#imageBigPopup');
 imageBigPopup.setEventListeners();
+
+
+
 const handleCardClick = (info) => imageBigPopup.open(info);
+const handleLikeClick = (card) => {
+    if (card.isLiked()) {
+        api.removeCardLike(card.id)
+        .then(cardsData => card.setLikes(cardsData.likes));
+    } else {
+        api.setCardLike(card.id)
+        .then(cardsData => card.setLikes(cardsData.likes));
+    }
+    
+    console.log(card.isLiked());
+     
+}
 
 
 //создаем попап с формой добавления карточки
@@ -111,8 +154,9 @@ function cardRender(cardElement) {
     cardList.addItem(createCard(cardElement));
 }
 //функция создания карточки
-function createCard(item) {
-    const card = new Card(item, '.item_template', handleCardClick);
+function createCard(data) {
+    const card = new Card(data, '.item_template', handleCardClick, handleLikeClick);
+    data.currentUserId = userId;
     const cardElement = card.generate();
     return cardElement
 }

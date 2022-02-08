@@ -27,4 +27,43 @@ export default class Api {
           })
             .then(onResponse);
     }
+
+    setInfo(data) {
+            return fetch(`${this._baseUrl}/users/me`, {
+                method: 'PATCH',
+                headers: this._headers,
+                body: JSON.stringify({
+                    name: data.name,
+                    about: data.about
+                })
+            })
+            .then(onResponse);
+    }
+
+    setUserAvatar(data) {
+        return fetch(`${this._url}/users/me/avatar`, {
+          method: 'PATCH',
+          headers: this._headers,
+          body: JSON.stringify({
+            avatar: data.avatar
+          })
+        })
+        .then(onResponse)
+      }
+
+    setCardLike(cardId) {
+        return fetch(`${this._url}/cards/${cardId}/likes`, {
+            method: 'PUT',
+            headers: this._headers
+          })
+            .then(onResponse);
+    }
+
+    removeCardLike(cardId) {
+        return fetch(`${this._url}/cards/${cardId}/likes`, {
+            method: 'DELETE',
+            headers: this._headers
+          })
+            .then(onResponse);
+    }
 }

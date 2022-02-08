@@ -16,7 +16,7 @@
         <div class="profile_wrapper">
           <img
           src=""
-          alt="Жак-Ив Кусто"
+          alt="Аватарка"
           class="profile__avatar"
           />
           <div class="profile_cover"></div>
@@ -116,7 +116,7 @@
             class="popup__input popup__input_change_avatar"
           />
           <span id="avatar-error" class="popup__error"></span>
-          <button type="submit" id="avatarSave-btn" class="popup__save-btn">Сохранить</button>
+          <button type="submit" id="avatarSavebtn" class="popup__save-btn">Сохранить</button>
         </form>
         <button type="button" class="popup__close"></button>
       </div>
@@ -150,7 +150,11 @@
         />          
         <div class="element__info">
           <h2 class="element__title"></h2>
-          <button type="button" class="element__heart"></button>
+          <div class="element__container">
+            <button type="button" class="element__heart"></button>
+            <span class="element__counter">0</span>
+          </div>
+          
         </div>
       </article>  
     </template>
