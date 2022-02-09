@@ -1,5 +1,5 @@
 export default class Card {
-    constructor (data, selector, handleCardClick, handleLikeClick) {
+    constructor (data, selector, handleCardClick, handleLikeClick, handleDelete) {
         this._name = data.name;
         this._link = data.link;
         this._selector = selector;
@@ -8,12 +8,15 @@ export default class Card {
         this._currentUserId = data.currentUserId;
         this._handleCardClick = handleCardClick;
         this._handleLikeClick = handleLikeClick;
+        this._handleDelete = handleDelete;
 
     }
     _getTemplate() {
         const cardElement = document.querySelector(this._selector).content.querySelector('.element').cloneNode(true);
         return cardElement;
     }
+
+    
     generate() {
         this._template = this._getTemplate();
         const elementImage = this._template.querySelector('.element__image');
@@ -23,14 +26,20 @@ export default class Card {
         this._setEventListeners();
         return this._template;
     }
+
+    deleteCardElement() {
+        this._template.remove();
+        this._template = null;
+    }
+
     _setEventListeners() {
         this._elementHeart = this._template.querySelector('.element__heart');
         this._elementHeart.addEventListener('click', () => {
             this._handleLikeClick(this);
         });
         this._template.querySelector('.element__trasher').addEventListener('click', () => {
-            this._template.remove();
-            this._template = null;
+            this._handleDelete(this);
+            
         });
         this._template.querySelector('.element__image').addEventListener('click', () => {
             const info = {link: this._link, name: this._name};

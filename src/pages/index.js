@@ -115,8 +115,19 @@ function submitAvatarEditForm(value) {
 }
 
 //функция подтверждения удаления
-function submitConfirmationForm() {
-    confirmationDeletePopup.close();
+function submitConfirmationForm(card) {
+    api.deleteCard(card._id)
+        .then(() => {
+            card.deleteCardElement();
+            confirmationDeletePopup.close();
+        })
+        .catch((err) => {
+            console.log(`Нельзя удалить карточку ${err}`);
+        });
+}
+
+function confirmDelete(card) {
+    confirmationDeletePopup.open(card);
 }
 
 //создаем попап с показом большого изображения
@@ -156,7 +167,7 @@ function cardRender(cardElement) {
 }
 //функция создания карточки
 function createCard(data) {
-    const card = new Card(data, '.item_template', handleCardClick, handleLikeClick);
+    const card = new Card(data, '.item_template', handleCardClick, handleLikeClick, confirmDelete);
     data.currentUserId = userId;
     const cardElement = card.generate();
     return cardElement

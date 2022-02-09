@@ -33,8 +33,8 @@ export default class Api {
                 method: 'PATCH',
                 headers: this._headers,
                 body: JSON.stringify({
-                    name: data.name,
-                    about: data.about
+                    name: data.heading,
+                    about: data.mission
                 })
             })
             .then(onResponse);
@@ -74,5 +74,13 @@ export default class Api {
             headers: this._headers
           })
             .then(onResponse);
+    }
+
+    deleteCard(cardId) {
+      return fetch(`${this._url}/cards/${cardId}`, {
+          method: 'DELETE',
+          headers: this._headers
+      })
+      .then(onResponse);
     }
 }
