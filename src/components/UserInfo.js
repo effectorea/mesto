@@ -17,9 +17,9 @@ export default class UserInfo{
         };
     } */
     //метод установки данных после заполнения инпутов
-    setUserInfo({ name, about }) {
-        this._name.textContent = name;
-        this._mission.textContent = about;    
+    setUserInfo(info) {
+        this._name.textContent = info.name;
+        this._mission.textContent = info.about;    
     }
     //метод отрисовки данных при открытии окна
     renderUserInfo() {
@@ -33,7 +33,7 @@ export default class UserInfo{
         }
     }
     //метод установки аватара
-    setAvatar({ avatar }) {
-        this._avatar.src = avatar;
+    setAvatar(info) {
+        this._avatar.src = info.avatar;
     }
 }

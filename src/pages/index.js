@@ -7,6 +7,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
+import PopupWithConfirm from '../components/PopupWithConfirm.js';
 import {
     config,
     info,
@@ -73,7 +74,7 @@ const avatarEditPopup = new PopupWithForm('#changeAvatarPopup', submitAvatarEdit
 avatarEditPopup.setEventListeners();
 
 //создаем попап подтверждения удаления карточки
-const confirmationDeletePopup = new PopupWithForm('#confirmationPopup', submitConfirmationForm, config);
+const confirmationDeletePopup = new PopupWithConfirm('#confirmationPopup', submitConfirmationForm, config);
 confirmationDeletePopup.setEventListeners();
 
 //функция подтверждения изменения профиля
@@ -116,8 +117,9 @@ function submitAvatarEditForm(value) {
 
 //функция подтверждения удаления
 function submitConfirmationForm(card) {
-    api.deleteCard(card._id)
+    api.deleteCard(card.getId())
         .then(() => {
+            console.log(card.getId());
             card.deleteCardElement();
             confirmationDeletePopup.close();
         })

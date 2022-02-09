@@ -9,6 +9,12 @@ export default class PopupWithForm extends Popup {
         this._inputs = this._form.querySelectorAll(this._config.inputSelector);
         this._submitButton = this._form.querySelector(this._config.submitButtonSelector);
     }
+  
+    open(card) {
+        super.open();
+        this._cardElement = card;
+    }
+     
     //в этом методе форма еще и сбрасывается
     close() {
         super.close();
@@ -27,6 +33,7 @@ export default class PopupWithForm extends Popup {
         super.setEventListeners();
         this._form.addEventListener('submit', () => {
             this._formSubmitHandler(this._getInputValues());
+            this._formSubmitHandler(this._cardElement);
         });
     }
 }
