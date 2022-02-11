@@ -11,18 +11,13 @@ import PopupWithConfirm from '../components/PopupWithConfirm.js';
 import {
     config,
     info,
-    elements,
     profileEditButtonElement,
     addPlaceButtonElement,
     profileEditForm,
     formAddArticleElement,
-    placeInput,
-    imageInput,
-    avatarPopup,
     avatarEditForm,
     avatarEditButton,
     confirmationForm,
-    confirmationPopup,
     profileSaveBtn,
     avatarSaveBtn,
     addArticleBtn
@@ -68,16 +63,6 @@ confirmationDeletePopup.setEventListeners();
 let userId = userInfo.getUserId();
 
 //записываем данные (когда выполнятся все промисы)
-Promise.all([api.getCards(), api.getUserInfo()])
-.then(([dataCards, dataUser]) => {
-    userId = userInfo.setUserId(dataUser);
-    cardList.renderItems(dataCards);
-    userInfo.setUserInfo(dataUser);
-    userInfo.setAvatar(dataUser);
-    console.log('Данные карточек', dataCards);
-    console.log('Данные полбзователя', dataUser);
-});
-
 
 //функция подтверждения изменения профиля
 function submitProfileEditForm(values) {
@@ -141,17 +126,16 @@ imageBigPopup.setEventListeners();
 
 
 const handleCardClick = (info) => imageBigPopup.open(info);
+
+
 const handleLikeClick = (card) => {
-    if (card.isLiked()) {
-        api.removeCardLike(card.id)
+     if (card.isLiked()) {
+        api.removeCardLike(card._id)
         .then(cardsData => card.setLikes(cardsData.likes));
     } else {
-        api.setCardLike(card.id)
+        api.setCardLike(card._id)
         .then(cardsData => card.setLikes(cardsData.likes));
     }
-    
-    console.log(card.isLiked());
-     
 }
 
 
@@ -171,8 +155,7 @@ function cardRender(cardElement) {
 }
 //функция создания карточки
 function createCard(data) {
-    const card = new Card(data, '.item_template', handleCardClick, handleLikeClick, confirmDelete);
-    data.currentUserId = userId;
+    const card = new Card(data, '.item_template', userInfo.getUserId(), handleCardClick, handleLikeClick, confirmDelete);
     const cardElement = card.generate();
     return cardElement
 }
@@ -197,6 +180,19 @@ function cardFormSubmit(inputs) {
             addArticleBtn.textContent = 'Создать';
         });
 }
+
+
+Promise.all([api.getCards(), api.getUserInfo()])
+.then(([dataCards, dataUser]) => {
+    cardList.renderItems(dataCards);
+    userInfo.setUserInfo(dataUser);
+    userInfo.setAvatar(dataUser);
+    userInfo.setUserId(dataUser);
+    console.log('Данные карточек', dataCards);
+    console.log('Данные полбзователя', dataUser);
+});
+
+
 
 //обработчик события на кнопу добавления карточки
 addPlaceButtonElement.addEventListener('click', () => {
