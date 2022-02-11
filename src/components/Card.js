@@ -29,8 +29,7 @@ export default class Card {
         this._likes = likesData;
         this._counter.textContent = this._likes.length;
         this.isLiked = !this.isLiked;
-        this._updateHeartView();
-        
+        this._updateHeartView();  
     }
 
     _updateHeartView() {
@@ -49,9 +48,9 @@ export default class Card {
 
         this._trasher = this._template.querySelector('.element__trasher');
         if(this._ownerId !== this._userId) {
-            this._trasher.classList.remove('element__trasher_disabled');
-        } else {
             this._trasher.classList.add('element__trasher_disabled');
+        } else {
+            this._trasher.classList.remove('element__trasher_disabled');
         }
         this._trasher.addEventListener('click', () => {
             this._handleDelete(this);
