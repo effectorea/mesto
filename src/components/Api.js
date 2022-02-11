@@ -33,8 +33,8 @@ export default class Api {
                 method: 'PATCH',
                 headers: this._headers,
                 body: JSON.stringify({
-                    name: data.heading,
-                    about: data.mission
+                    name: data.name,
+                    about: data.about
                 })
             })
             .then(onResponse);
