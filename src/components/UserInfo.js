@@ -9,13 +9,16 @@ export default class UserInfo{
         this._avatar = document.querySelector(this._info.avatarSelector);
         this._inputAvatar = document.querySelector(this._info.inputAvatarSelector);
     }
+    //все методы в этом классе отвечают за то, чтобы получить всю имеющуюся информацию о пользователе
+    //всё кроме когорты - эта инфа нам тут не нужна
 
-   /*  getUserInfo() {
+    //метод получения информации о пользователе
+    getUserInfo() {
         return {
             name: this._name.textContent, 
             about: this._mission.textContent,
         };
-    } */
+    }
     //метод установки данных после заполнения инпутов
     setUserInfo(info) {
         this._name.textContent = info.name;
@@ -35,5 +38,13 @@ export default class UserInfo{
     //метод установки аватара
     setAvatar(info) {
         this._avatar.src = info.avatar;
+    }
+    //метод получения айди пользователя
+    getUserId() {
+        return this._id
+    }
+    //метод установки айди пользователя
+    setUserId(id) {
+        this._id = id;
     }
 }

@@ -39,19 +39,6 @@ const api = new Api({
     }
 });
 
-let userId = null;
-
-//записываем данные (когда выполнятся все промисы)
-Promise.all([api.getCards(), api.getUserInfo()])
-.then(([dataCards, dataUser]) => {
-    userId = dataUser._id;
-    cardList.renderItems(dataCards);
-    userInfo.setUserInfo(dataUser);
-    userInfo.setAvatar(dataUser);
-    console.log('Данные карточек', dataCards);
-    console.log('Данные полбзователя', dataUser);
-});
-
 //получаем по экземпляру валидации форм 
 const profileValidation = new FormValidator(config, profileEditForm);
 profileValidation.enableValidation();
@@ -76,6 +63,21 @@ avatarEditPopup.setEventListeners();
 //создаем попап подтверждения удаления карточки
 const confirmationDeletePopup = new PopupWithConfirm('#confirmationPopup', submitConfirmationForm, config);
 confirmationDeletePopup.setEventListeners();
+
+//записываем в переменную значение, которое получится в ходе получения айдишника
+let userId = userInfo.getUserId();
+
+//записываем данные (когда выполнятся все промисы)
+Promise.all([api.getCards(), api.getUserInfo()])
+.then(([dataCards, dataUser]) => {
+    userId = userInfo.setUserId(dataUser);
+    cardList.renderItems(dataCards);
+    userInfo.setUserInfo(dataUser);
+    userInfo.setAvatar(dataUser);
+    console.log('Данные карточек', dataCards);
+    console.log('Данные полбзователя', dataUser);
+});
+
 
 //функция подтверждения изменения профиля
 function submitProfileEditForm(values) {
