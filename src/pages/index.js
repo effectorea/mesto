@@ -129,7 +129,7 @@ const handleCardClick = (info) => imageBigPopup.open(info);
 
 
 const handleLikeClick = (card) => {
-     if (card.isLiked()) {
+     if (card.isLiked) {
         api.removeCardLike(card._id)
         .then(cardsData => card.setLikes(cardsData.likes));
     } else {

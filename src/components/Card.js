@@ -10,6 +10,7 @@ export default class Card {
         this._handleCardClick = handleCardClick;
         this._handleLikeClick = handleLikeClick;
         this._handleDelete = handleDelete;
+        this.isLiked = data.likes.some(item => item._id === this._userId);
 
     }
     _getTemplate() {
@@ -27,18 +28,13 @@ export default class Card {
     setLikes(likesData) {
         this._likes = likesData;
         this._counter.textContent = this._likes.length;
+        this.isLiked = !this.isLiked;
         this._updateHeartView();
         
     }
- 
-    isLiked() {
-        return this._likes.some((user) => {
-            user._id === this._ownerId;
-        })
-    }
 
     _updateHeartView() {
-        if (!this.isLiked()) {
+        if (!this.isLiked) {
             this._elementHeart.classList.remove('element__heart_active');
         } else {
             this._elementHeart.classList.add('element__heart_active');
