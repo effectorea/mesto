@@ -184,10 +184,11 @@ function cardFormSubmit(inputs) {
 
 Promise.all([api.getCards(), api.getUserInfo()])
 .then(([dataCards, dataUser]) => {
-    cardList.renderItems(dataCards);
+    userId = userInfo.setUserId(dataUser._id);
     userInfo.setUserInfo(dataUser);
     userInfo.setAvatar(dataUser);
-    userInfo.setUserId(dataUser);
+    cardList.renderItems(dataCards);
+    
     console.log('Данные карточек', dataCards);
     console.log('Данные полбзователя', dataUser);
 });
