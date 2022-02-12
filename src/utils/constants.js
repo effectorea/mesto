@@ -31,7 +31,7 @@ export const saveBtn = document.querySelector('#articleSave-btn');
 export const avatarPopup = document.querySelector('#changeAvatarPopup');
 export const avatarSaveBtn = avatarPopup.querySelector('.popup__save-btn');
 export const avatarEditForm = avatarPopup.querySelector('.popup__form');
-export const avatarEditButton = document.querySelector('.profile_wrapper');
+export const avatarEditButton = document.querySelector('.profile__wrapper');
 export const confirmationPopup = document.querySelector('#confirmationPopup');
 export const confirmationForm = confirmationPopup.querySelector('.popup__form');
 

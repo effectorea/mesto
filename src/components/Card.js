@@ -16,8 +16,9 @@ export default class Card {
     _getTemplate() {
         const cardElement = document.querySelector(this._selector).content.querySelector('.element').cloneNode(true);
         this._heartButton = cardElement.querySelector('.element__heart');
-        this._counter = cardElement.querySelector('.element__counter');  
+        this._counter = cardElement.querySelector('.element__counter');
         return cardElement;
+        
     }
 
     deleteCardElement() {

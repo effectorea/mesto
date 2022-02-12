@@ -1,4 +1,4 @@
-.profile_cover::before {
+.profile__cover::before {
     content: "";
     background: rgba(0, 0, 0, 0.8);
     background-image: url(../../../images/pencil.svg);
@@ -18,6 +18,6 @@
     transition: .3s opacity;
   }
   
-  .profile_cover:hover::before {
+  .profile__cover:hover::before {
     opacity: 0.8;
   }

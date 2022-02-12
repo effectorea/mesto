@@ -59,10 +59,10 @@ avatarEditPopup.setEventListeners();
 const confirmationDeletePopup = new PopupWithConfirm('#confirmationPopup', submitConfirmationForm, config);
 confirmationDeletePopup.setEventListeners();
 
-//записываем в переменную значение, которое получится в ходе получения айдишника
+//записываем в переменную значение, которое получится в ходе получения айдишника, чтобы иметь доступ к нему везде
 let userId = userInfo.getUserId();
 
-//записываем данные (когда выполнятся все промисы)
+
 
 //функция подтверждения изменения профиля
 function submitProfileEditForm(values) {
@@ -181,7 +181,7 @@ function cardFormSubmit(inputs) {
         });
 }
 
-
+//записываем данные (когда выполнятся все промисы)
 Promise.all([api.getCards(), api.getUserInfo()])
 .then(([dataCards, dataUser]) => {
     userId = userInfo.setUserId(dataUser._id);
