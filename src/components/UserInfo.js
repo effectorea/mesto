@@ -4,10 +4,7 @@ export default class UserInfo{
         this._info = info;
         this._name = document.querySelector(this._info.nameSelector);
         this._mission = document.querySelector(this._info.missionSelector);
-        this._inputName = document.querySelector(this._info.inputNameSelector);
-        this._inputMission = document.querySelector(this._info.inputMissionSelector);
         this._avatar = document.querySelector(this._info.avatarSelector);
-        this._inputAvatar = document.querySelector(this._info.inputAvatarSelector);
     }
     //все методы в этом классе отвечают за то, чтобы получить всю имеющуюся информацию о пользователе
     //всё кроме когорты - эта инфа нам тут не нужна
@@ -25,10 +22,10 @@ export default class UserInfo{
         this._mission.textContent = info.about;    
     }
     //метод отрисовки данных при открытии окна
-    renderUserInfo() {
-        this._inputName.value = this._name.textContent;
-        this._inputMission.value = this._mission.textContent;
+    renderUserInfo(input, element) {
+        input.value = element.textContent;
     } 
+
     //метод получения аватара
     getAvatar() {
         return {

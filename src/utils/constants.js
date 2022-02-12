@@ -10,10 +10,7 @@ errorClass: 'popup__error_visible'
 export const info = {
 nameSelector: '.profile__title',
 missionSelector: '.profile__subtitle',
-inputNameSelector: '.popup__input_add_name',
-inputMissionSelector: '.popup__input_add_mission',
-avatarSelector: '.profile__avatar',
-inputAvatarSelector: '.popup__input_change_avatar'
+avatarSelector: '.profile__avatar'
 };
 
 export const elements = document.querySelector('.elements');
@@ -27,6 +24,8 @@ export const addArticleBtn = popupAddArticleElement.querySelector('.popup__save-
 export const formAddArticleElement = popupAddArticleElement.querySelector('.popup__form');
 export const placeInput = popupAddArticleElement.querySelector('#place');
 export const imageInput = popupAddArticleElement.querySelector('#image');
+export const inputName = profilePopup.querySelector('#name');
+export const inputAbout = profilePopup.querySelector('#about');
 export const saveBtn = document.querySelector('#articleSave-btn');
 export const avatarPopup = document.querySelector('#changeAvatarPopup');
 export const avatarSaveBtn = avatarPopup.querySelector('.popup__save-btn');
@@ -34,4 +33,6 @@ export const avatarEditForm = avatarPopup.querySelector('.popup__form');
 export const avatarEditButton = document.querySelector('.profile__wrapper');
 export const confirmationPopup = document.querySelector('#confirmationPopup');
 export const confirmationForm = confirmationPopup.querySelector('.popup__form');
+export const userName = document.querySelector('.profile__title');
+export const userAbout = document.querySelector('.profile__subtitle');
 
