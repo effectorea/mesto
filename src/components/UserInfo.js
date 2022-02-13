@@ -22,8 +22,8 @@ export default class UserInfo{
         this._mission.textContent = info.about;    
     }
     //метод отрисовки данных при открытии окна
-    renderUserInfo(input, element) {
-        input.value = element.textContent;
+    renderUserInfo(input, value) {
+        input.value = value;
     } 
 
     //метод получения аватара

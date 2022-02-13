@@ -33,6 +33,4 @@ export const avatarEditForm = avatarPopup.querySelector('.popup__form');
 export const avatarEditButton = document.querySelector('.profile__wrapper');
 export const confirmationPopup = document.querySelector('#confirmationPopup');
 export const confirmationForm = confirmationPopup.querySelector('.popup__form');
-export const userName = document.querySelector('.profile__title');
-export const userAbout = document.querySelector('.profile__subtitle');
 

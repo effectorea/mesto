@@ -22,9 +22,7 @@ import {
     avatarSaveBtn,
     addArticleBtn,
     inputName,
-    inputAbout,
-    userName,
-    userAbout
+    inputAbout
 } from '../utils/constants.js';
 
 import './index.css';
@@ -208,8 +206,8 @@ addPlaceButtonElement.addEventListener('click', () => {
 
 //обработчик события на форму редактирования профиля
 profileEditButtonElement.addEventListener('click', () => {
-    userInfo.renderUserInfo(inputName, userName);
-    userInfo.renderUserInfo(inputAbout, userAbout);
+    userInfo.renderUserInfo(inputName, userInfo.getUserInfo().name);
+    userInfo.renderUserInfo(inputAbout, userInfo.getUserInfo().about);
     profileValidation.toggleButtonError();
     profileValidation.clearValidation();
     profileEditPopup.open();
